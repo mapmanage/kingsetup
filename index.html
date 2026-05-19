@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Setup | Professional Multi-Market Engine</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
+        .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .admin-box { background: #020617; border: 1px solid #1e293b; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased text-gray-900">
+
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 text-white p-1.5 rounded-lg shadow-lg">
+                    <i class="fa-solid fa-crown text-lg"></i>
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase text-gray-900">KING<span class="text-blue-600">SETUP</span></span>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+                <div class="hidden md:flex space-x-4 text-sm font-bold text-gray-600">
+                    <a href="#" class="hover:text-blue-600">Home</a>
+                    <a href="#" class="hover:text-blue-600">Marketplaces</a>
+                    <a href="#" class="hover:text-blue-600">Help</a>
+                </div>
+                <button onclick="openAdmin()" class="bg-gray-100 hover:bg-gray-200 text-gray-500 p-2 rounded-full transition cursor-pointer">
+                    <i class="fa-solid fa-user-gear"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="adminOverlay" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="admin-box w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
+                <h2 class="text-white font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-blue-500"></i> King Setup Control Center
+                </h2>
+                <button onclick="closeAdmin()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-circle-xmark text-xl"></i></button>
+            </div>
+            
+            <div class="p-8 space-y-6 overflow-y-auto max-h-[70vh]">
+                <div class="space-y-2">
+                    <label class="text-gray-400 text-xs font-bold uppercase tracking-widest">Google Web App URL (Live Database)</label>
+                    <input type="text" id="admin_sheet_url" value="https://script.google.com/macros/s/AKfycbwjgzey-oGjqBzlf_emaSYIxeMFVCdYHfZ7aNYulH9W6s5Q9S9QuGwrTa7lNv5OOaoc/exec" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-emerald-400 font-mono text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-gray-400 text-xs font-bold uppercase tracking-widest">AliExpress Tracking ID</label>
+                        <input type="text" id="admin_ali_id" placeholder="kingsetup-20" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-gray-400 text-xs font-bold uppercase tracking-widest">Alibaba Wholesale ID</label>
+                        <input type="text" id="admin_alibaba_id" placeholder="alibaba-wholesale-id" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white">
+                    </div>
+                </div>
+
+                <div class="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20">
+                    <p class="text-blue-300 text-xs leading-relaxed">
+                        <i class="fa-solid fa-circle-info mr-1"></i> 
+                        আপনি এখানে যখনই নতুন কোনো ট্র্যাকিং আইডি বা স্ক্রিপ্ট ইউআরএল বসিয়ে সেভ করবেন, পুরো ওয়েবসাইটটি অটোমেটিক ওই আইডি অনুযায়ী কাস্টমারদের কাছে প্রোডাক্ট দেখানো শুরু করবে।
+                    </p>
+                </div>
+
+                <button onclick="saveAdminSettings()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl transition shadow-lg shadow-blue-900/20 cursor-pointer">
+                    SAVE SYSTEM SETTINGS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero-bg py-20 px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <span class="bg-blue-500/20 text-blue-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block border border-blue-500/30">Next-Gen Sourcing Platform</span>
+                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                    Search and Source from <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Global Wholesale Markets</span>
+                </h1>
+                <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+                    Compare prices across AliExpress, Alibaba, and more with our automated tracking engine. Find the best deals in seconds.
+                </p>
+
+                <div class
+2xl border border-gray-200 shadow-xs hover:shadow-md transition flex flex-col overflow-hidden group">
+                            <div class="relative bg-gray-100 pt-[100%]">
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" class="absolute inset-0 w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 ${platform.color} text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+                                    <i class="fa-solid ${platform.icon}"></i> ${platform.name}
+                                </span>
+                            </div>
+                            <div class="p-4 flex flex-col flex-grow">
+                                <h3 class="font-bold text-gray-900 text-sm line-clamp-2 mb-2">${productName}</h3>
+                                <div class="mt-auto">
+                                    <div class="flex items-baseline gap-1 mb-3">
+                                        <span class="text-base font-black text-blue-600">$${(Math.random() * 30 + 3).toFixed(2)}</span>
+                                        <span class="text-[10px] text-gray-400">/ piece</span>
+                                    </div>
+                                    <a href="${automatedAffiliateLink}" target="_blank" onclick="logToGoogleSheet('Product Click', '${productName}', '${automatedAffiliateLink}')" class="w-full bg-gray-900 hover:bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-center decoration-none">
+                                        <span>Compare & Buy</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += productHTML;
+                }
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
+ndom() * 40 + 5).toFixed(2)}</span>
+                                    </div>
+                                    <a href="${automatedAffiliateLink}" target="_blank" onclick="logToGoogleSheet('Product Click', '${productName}', '${automatedAffiliateLink}')" class="w-full bg-gray-900 hover:bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-center decoration-none">
+                                        <span>Buy Product</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += productHTML;
+                }
+            }, 1100);
+        });
+    </script>
+</body>
+</html>
+n onclick="window.open('https://www.bdshop.com/', '_blank')" class="w-full mt-3 p-2.5 rounded-xl bg-[#0f4c4a] text-white font-bold text-xs hover:opacity-90 transition deal-btn">View Deal →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="blog-section" class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <article class="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between blog-card border border-transparent">
+          <div class="h-52 w-full overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between">
+            <div>
+              <div class="flex gap-2 text-xs text-gray-400 mb-2">
+                <span>May 19, 2026</span> • <span>5 min read</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2 blog-title">Top 5 Budget-Conscious Gadgets in 2026</h3>
+              <p class="text-xs text-gray-500 leading-relaxed">Looking for the best tech pieces without breaking the bank? Here is our ultimate handpicked guide for tech lovers.</p>
+            </div>
+            <button onclick="alert('Full article content integration upcoming.')" class="self-start mt-4 text-sm font-bold text-orange-500 hover:opacity-80 transition blog-link">Read Article →</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between blog-card border border-transparent">
+          <div class="h-52 w-full overflow-hidden bg-gray-100">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between">
+            <div>
+              <div class="flex gap-2 text-xs text-gray-400 mb-2">
+                <span>May 18, 2026</span> • <span>4 min read</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2 blog-title">How to Find True Online Product Discounts Fast</h3>
+              <p class="text-xs text-gray-500 leading-relaxed">Stop overpaying today. Learn the secret metrics behind major store discounts like Amazon, Daraz, and AliExpress.</p>
+            </div>
+            <button onclick="alert('Full article content integration upcoming.')" class="self-start mt-4 text-sm font-bold text-orange-500 hover:opacity-80 transition blog-link">Read Article →</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-center p-10 text-xs text-gray-400 border-t mt-12 bg-white transition-colors duration-300" id="footer-section">
+    <p class="max-w-xl mx-auto mb-4 style='line-height: 1.6' opacity-80">
+      Disclaimer: KING SETUP is a premium affiliate network platform. Some of the links above are affiliate links, meaning we may earn a small commission at no additional cost to you.
+    </p>
+    © 2026 KING SETUP Network Platform. All rights reserved.
+  </footer>
+
+  <script>
+    let currentCategory = 'All';
+
+    function switchTab(tab) {
+      const dealsSec = document.getElementById('deals-section');
+      const blogSec = document.getElementById('blog-section');
+      const btnDeals = document.getElementById('btn-deals');
+      const btnBlog = document.getElementById('btn-blog');
+      const searchContainer = document.getElementById('search-container');
+      const isCyber = document.getElementById('theme-select').value === 'cyber';
+
+      if (tab === 'deals') {
+        dealsSec.classList.remove('hidden');
+        blogSec.classList.add('hidden');
+        searchContainer.classList.remove('opacity-0');
+        btnDeals.className = `font-bold text-sm ${isCyber ? 'text-[#00ffff]' : 'text-[#0f4c4a]'}`;
+        btnBlog.className = 'text-sm text-gray-500 hover:text-gray-900';
+      } else {
+        dealsSec.classList.add('hidden');
+        blogSec.classList.remove('hidden');
+        searchContainer.classList.add('opacity-0');
+        btnBlog.className = `font-bold text-sm ${isCyber ? 'text-[#00ffff]' : 'text-[#0f4c4a]'}`;
+        btnDeals.className = 'text-sm text-gray-500 hover:text-gray-900';
+      }
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      const btns = document.querySelectorAll('.cat-btn');
+      btns.forEach(btn => {
+        if(btn.innerText === cat) {
+          btn.className = "cat-btn bg-orange-500 text-white p-2 px-5 rounded-full text-xs font-semibold shadow-sm transition";
+        } else {
+          btn.className = "cat-btn bg-white text-gray-800 p-2 px-5 rounded-full text-xs font-semibold shadow-sm hover:bg-gray-100 transition";
+        }
+      });
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+      
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const name = card.getAttribute('data-name');
+        
+        const matchesCat = (currentCategory === 'All' || cat === currentCategory);
+        const matchesSearch = name.includes(query);
+        
+        if(matchesCat && matchesSearch) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function toggleTheme(theme) {
+      const isCyber = theme === 'cyber';
+      document.getElementById('body-bg').className = isCyber ? "bg-[#0b0c10] text-white" : "bg-[#f4f7f6] text-gray-900";
+      document.getElementById('nav-card').className = `p-4 px-6 flex justify-between items-center shadow-sm sticky top-0 z-50 transition-colors duration-300 ${isCyber ? 'bg-[#1f2833] text-white' : 'bg-white text-gray-900'}`;
+      document.getElementById('logo-text').className = `text-xl font-extrabold tracking-wide ${isCyber ? 'text-[#00ffff]' : 'text-[#0f4c4a]'}`;
+      document.getElementById('theme-select').className = `p-1.5 px-3 rounded-full border-2 bg-transparent font-bold text-xs cursor-pointer outline-none ${isCyber ? 'border-[#00ffff] text-white' : 'border-[#0f4c4a] text-gray-900'}`;
+      document.getElementById('hero-banner').style.background = isCyber ? "linear-gradient(135deg, #1f2833 0%, #0b0c10 100%)" : "linear-gradient(135deg, #0f4c4a 0%, #1a202c 100%)";
+      document.getElementById('footer-section').className = `text-center p-10 text-xs text-gray-400 border-t mt-12 transition-colors duration-300 ${isCyber ? 'bg-[#0b0c10] border-gray-800' : 'bg-white border-gray-200'}`;
+      
+      // Cards Theme Adjustments
+      document.querySelectorAll('.product-card, .blog-card').forEach(c => {
+        c.style.backgroundColor = isCyber ? '#1f2833' : '#ffffff';
+        c.style.borderColor = isCyber ? '#2d3748' : 'transparent';
+      });
+      document.querySelectorAll('.deal-btn').forEach(b => {
+        b.style.backgroundColor = isCyber ? '#00ffff' : '#0f4c4a';
+        b.style.color = isCyber ? '#0b0c10' : '#ffffff';
+      });
+      document.querySelectorAll('.price-text').forEach(t => {
+        t.style.color = isCyber ? '#00ffff' : '#0f4c4a';
+      });
+      document.querySelectorAll('.blog-title').forEach(t => {
+        t.style.color = isCyber ? '#ffffff' : '#1a202c';
+      });
+
+      // Reset Active Tab colors
+      const activeTab = document.getElementById('btn-deals').classList.contains('text-[#0f4c4a]') || document.getElementById('btn-deals').classList.contains('text-[#00ffff]') ? 'deals' : 'blog';
+      switchTab(activeTab);
+    }
+  </script>
+</body>
+</html>
