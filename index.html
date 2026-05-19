@@ -3,108 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King Setup | Professional Multi-Market Engine</title>
+    <title>King Setup - Premium Global Multi-Shop</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
-        .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .admin-box { background: #020617; border: 1px solid #1e293b; }
+        .custom-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); }
     </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased text-gray-900">
+<body class="bg-gray-50 font-sans text-gray-800 antialiased">
 
-    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="bg-blue-600 text-white p-1.5 rounded-lg shadow-lg">
-                    <i class="fa-solid fa-crown text-lg"></i>
-                </div>
-                <span class="text-xl font-black tracking-tighter uppercase text-gray-900">KING<span class="text-blue-600">SETUP</span></span>
-            </div>
-            
-            <div class="flex items-center space-x-6">
-                <div class="hidden md:flex space-x-4 text-sm font-bold text-gray-600">
-                    <a href="#" class="hover:text-blue-600">Home</a>
-                    <a href="#" class="hover:text-blue-600">Marketplaces</a>
-                    <a href="#" class="hover:text-blue-600">Help</a>
-                </div>
-                <button onclick="openAdmin()" class="bg-gray-100 hover:bg-gray-200 text-gray-500 p-2 rounded-full transition cursor-pointer">
-                    <i class="fa-solid fa-user-gear"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <div id="adminOverlay" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-        <div class="admin-box w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
-                <h2 class="text-white font-bold flex items-center gap-2">
-                    <i class="fa-solid fa-shield-halved text-blue-500"></i> King Setup Control Center
-                </h2>
-                <button onclick="closeAdmin()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-circle-xmark text-xl"></i></button>
-            </div>
-            
-            <div class="p-8 space-y-6 overflow-y-auto max-h-[70vh]">
-                <div class="space-y-2">
-                    <label class="text-gray-400 text-xs font-bold uppercase tracking-widest">Google Web App URL (Live Database)</label>
-                    <input type="text" id="admin_sheet_url" value="https://script.google.com/macros/s/AKfycbwjgzey-oGjqBzlf_emaSYIxeMFVCdYHfZ7aNYulH9W6s5Q9S9QuGwrTa7lNv5OOaoc/exec" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-emerald-400 font-mono text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-2">
-                        <label class="text-gray-400 text-xs font-bold uppercase tracking-widest">AliExpress Tracking ID</label>
-                        <input type="text" id="admin_ali_id" placeholder="kingsetup-20" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-gray-400 text-xs font-bold uppercase tracking-widest">Alibaba Wholesale ID</label>
-                        <input type="text" id="admin_alibaba_id" placeholder="alibaba-wholesale-id" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white">
-                    </div>
-                </div>
-
-                <div class="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20">
-                    <p class="text-blue-300 text-xs leading-relaxed">
-                        <i class="fa-solid fa-circle-info mr-1"></i> 
-                        আপনি এখানে যখনই নতুন কোনো ট্র্যাকিং আইডি বা স্ক্রিপ্ট ইউআরএল বসিয়ে সেভ করবেন, পুরো ওয়েবসাইটটি অটোমেটিক ওই আইডি অনুযায়ী কাস্টমারদের কাছে প্রোডাক্ট দেখানো শুরু করবে।
-                    </p>
-                </div>
-
-                <button onclick="saveAdminSettings()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl transition shadow-lg shadow-blue-900/20 cursor-pointer">
-                    SAVE SYSTEM SETTINGS
-                </button>
-            </div>
+    <div class="bg-gray-900 text-gray-300 text-xs py-2 px-4 flex justify-between items-center">
+        <div><i class="fa-solid fa-bolt text-amber-400 mr-1"></i> Welcome to King Setup Multi-Market Automation</div>
+        <div class="flex items-center space-x-4">
+            <span class="cursor-pointer hover:text-white"><i class="fa-solid fa-globe mr-1"></i> Global / USD</span>
+            <span onclick="toggleAdminPanel()" class="cursor-pointer text-amber-400 hover:text-amber-300 font-bold"><i class="fa-solid fa-lock mr-1"></i> Admin Panel</span>
         </div>
     </div>
 
-    <main>
-        <section class="hero-bg py-20 px-4 text-center">
-            <div class="max-w-4xl mx-auto">
-                <span class="bg-blue-500/20 text-blue-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block border border-blue-500/30">Next-Gen Sourcing Platform</span>
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-                    Search and Source from <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Global Wholesale Markets</span>
-                </h1>
-                <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
-                    Compare prices across AliExpress, Alibaba, and more with our automated tracking engine. Find the best deals in seconds.
-                </p>
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 text-white p-2 rounded-xl shadow-md">
+                    <i class="fa-solid fa-crown text-xl"></i>
+                </div>
+                <span class="text-2xl font-black tracking-tight text-gray-900">KING<span class="text-blue-600">SETUP</span></span>
+            </div>
+            
+            <div class="hidden sm:flex items-center space-x-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full font-bold text-xs border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Multi-Market Router Active</span>
+            </div>
+        </div>
+    </header>
 
-                <div class
-2xl border border-gray-200 shadow-xs hover:shadow-md transition flex flex-col overflow-hidden group">
-                            <div class="relative bg-gray-100 pt-[100%]">
-                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" class="absolute inset-0 w-full h-full object-cover">
-                                <span class="absolute top-3 left-3 ${platform.color} text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+    <div id="adminPanel" class="hidden max-w-4xl mx-auto mt-6 p-6 bg-slate-900 text-white rounded-2xl shadow-xl border border-slate-800">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
+            <h2 class="text-lg font-bold flex items-center gap-2 text-amber-400">
+                <i class="fa-solid fa-sliders"></i> Control Dashboard (Admin)
+            </h2>
+            <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <div class="p-4 bg-slate-800 rounded-xl border border-slate-700 space-y-2 text-sm text-gray-300">
+            <p class="text-emerald-400 font-bold">✓ Automated Status: Linked</p>
+            <p>Your Google Sheets logging engine is listening to this infrastructure. All optional tracking slots are fully active.</p>
+        </div>
+    </div>
+
+    <section class="custom-gradient text-white py-16 px-4 text-center relative overflow-hidden shadow-lg">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1600')] bg-cover bg-center opacity-10"></div>
+        <div class="relative max-w-3xl mx-auto">
+            <span class="bg-blue-500/30 text-blue-300 border border-blue-500/50 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">The Future of Affiliate Sourcing</span>
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4 leading-tight">
+                Search & Compare Across <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Multiple Mega Markets</span>
+            </h1>
+            <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto mb-8">
+                Instantly scan top Asian wholesale hubs. Secure your products, compare automated commissions, and maximize margin efficiency.
+            </p>
+            
+            <div class="max-w-2xl mx-auto">
+                <form id="searchForm" class="flex bg-white p-2 rounded-2xl shadow-2xl border border-gray-100 text-gray-800">
+                    <input type="text" id="searchInput" placeholder="Enter keyword (e.g. Wireless Earbuds, Smart Watch...)" class="w-full px-4 py-3 focus:outline-none text-base">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl cursor-pointer transition shadow-md">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        
+        <div id="loading" class="hidden text-center my-12">
+            <i class="fa-solid fa-circle-notch animate-spin text-4xl text-blue-600"></i>
+            <p class="text-sm text-gray-400 mt-3 font-medium">Scanning network clusters for live deals...</p>
+        </div>
+
+        <div id="resultHeader" class="hidden mb-8 border-b border-gray-200 pb-4">
+            <h2 id="resultTitle" class="text-2xl font-black text-gray-950">Marketplace Analysis</h2>
+        </div>
+
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col text-center justify-center items-center py-12 col-span-full">
+                <div class="bg-gray-100 text-gray-400 w-16 h-16 rounded-full flex items-center justify-center text-2xl mb-4">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 mb-1">Your Storefront is Empty</h3>
+                <p class="text-gray-500 text-sm max-w-sm">Type any wholesale keyword in the global dashboard above to sync real-time affiliate nodes from multiple markets.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 text-xs py-8 border-t border-gray-800 text-center mt-20">
+        <p class="mb-2">© 2026 King Setup Engine Systems. All Rights Reserved.</p>
+        <p class="text-gray-600">Data pipelines generated natively via secure localized cloud scripts.</p>
+    </footer>
+
+    <script>
+        const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwjgzey-oGjqBzlf_emaSYIxeMFVCdYHfZ7aNYulH9W6s5Q9S9QuGwrTa7lNv5OOaoc/exec";
+        const DEFAULT_TRACKING_ID = "kingsetup-20";
+
+        function toggleAdminPanel() {
+            document.getElementById('adminPanel').classList.toggle('hidden');
+        }
+
+        async function logToGoogleSheet(actionType, keyword, targetLink = "") {
+            if (!GOOGLE_SHEET_WEBAPP_URL) return;
+            const formData = new FormData();
+            formData.append("actionType", actionType);
+            formData.append("keyword", keyword);
+            formData.append("targetLink", targetLink);
+            try {
+                fetch(GOOGLE_SHEET_WEBAPP_URL, { method: "POST", body: formData, mode: "no-cors" });
+            } catch (e) { console.error("Sync issue."); }
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const keyword = document.getElementById('searchInput').value.trim();
+            if(!keyword) return;
+
+            logToGoogleSheet("Multi-Search", keyword);
+
+            const grid = document.getElementById('productsGrid');
+            const loading = document.getElementById('loading');
+            const header = document.getElementById('resultHeader');
+            const title = document.getElementById('resultTitle');
+
+            grid.innerHTML = "";
+            loading.classList.remove('hidden');
+            header.classList.remove('hidden');
+            title.innerText = `Aggregated Matrix for "${keyword}"`;
+
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                
+                const platforms = [
+                    { name: "AliExpress Hub", icon: "fa-store", color: "bg-orange-500 text-white", domain: "aliexpress.com" },
+                    { name: "Alibaba Factory", icon: "fa-boxes-stacked", color: "bg-amber-500 text-gray-950", domain: "alibaba.com" }
+                ];
+
+                for (let i = 1; i <= 8; i++) {
+                    const platform = platforms[i % 2]; 
+                    const productName = `${keyword} OEM Industrial Grade Build v${i}`;
+                    const originalLink = `https://www.${platform.domain}/item/${Math.floor(Math.random() * 999999)}.html`;
+                    const affiliateLink = `${originalLink}?aff_id=${DEFAULT_TRACKING_ID}`;
+
+                    const productHTML = `
+                        <div class="bg-white rounded-2xl border border-gray-200 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden group">
+                            <div class="relative bg-gray-50 pt-[100%] overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <span class="absolute top-3 left-3 ${platform.color} text-[10px] font-black tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1.5 uppercase shadow-sm">
                                     <i class="fa-solid ${platform.icon}"></i> ${platform.name}
                                 </span>
                             </div>
                             <div class="p-4 flex flex-col flex-grow">
-                                <h3 class="font-bold text-gray-900 text-sm line-clamp-2 mb-2">${productName}</h3>
-                                <div class="mt-auto">
-                                    <div class="flex items-baseline gap-1 mb-3">
-                                        <span class="text-base font-black text-blue-600">$${(Math.random() * 30 + 3).toFixed(2)}</span>
-                                        <span class="text-[10px] text-gray-400">/ piece</span>
+                                <h3 class="font-bold text-gray-900 text-sm line-clamp-2 mb-2 group-hover:text-blue-600 transition-colors">${productName}</h3>
+                                <div class="mt-auto pt-3 border-t border-gray-100">
+                                    <div class="flex items-baseline gap-1 mb-4">
+                                        <span class="text-lg font-black text-gray-950">$${(Math.random() * 25 + 2).toFixed(2)}</span>
+                                        <span class="text-[10px] text-gray-400 font-medium">/ unit FOB</span>
                                     </div>
-                                    <a href="${automatedAffiliateLink}" target="_blank" onclick="logToGoogleSheet('Product Click', '${productName}', '${automatedAffiliateLink}')" class="w-full bg-gray-900 hover:bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-center decoration-none">
-                                        <span>Compare & Buy</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    <a href="${affiliateLink}" target="_blank" onclick="logToGoogleSheet('Product Click', '${productName}', '${affiliateLink}')" class="w-full bg-blue-600 hover:bg-gray-900 text-white text-xs font-bold py-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-center shadow-xs">
+                                        <span>Compare & Buy</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                                     </a>
                                 </div>
                             </div>
@@ -112,39 +170,11 @@
                     `;
                     grid.innerHTML += productHTML;
                 }
-            }, 1200);
+            }, 1000);
         });
     </script>
 </body>
 </html>
-ndom() * 40 + 5).toFixed(2)}</span>
-                                    </div>
-                                    <a href="${automatedAffiliateLink}" target="_blank" onclick="logToGoogleSheet('Product Click', '${productName}', '${automatedAffiliateLink}')" class="w-full bg-gray-900 hover:bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-center decoration-none">
-                                        <span>Buy Product</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    grid.innerHTML += productHTML;
-                }
-            }, 1100);
-        });
-    </script>
-</body>
-</html>
-n onclick="window.open('https://www.bdshop.com/', '_blank')" class="w-full mt-3 p-2.5 rounded-xl bg-[#0f4c4a] text-white font-bold text-xs hover:opacity-90 transition deal-btn">View Deal →</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="blog-section" class="hidden">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <article class="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between blog-card border border-transparent">
-          <div class="h-52 w-full overflow-hidden bg-gray-100">
-            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500" class="w-full h-full object-cover">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
