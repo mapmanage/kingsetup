@@ -3,65 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King Setup - Premium Global Multi-Shop</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>King Setup - Global Multi-Marketplace Search Engine</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        .custom-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); }
+        .theme-gold-text { color: #D4AF37; }
+        .theme-gold-bg { background-color: #D4AF37; }
+        .theme-gold-border { border-color: #D4AF37; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-800 antialiased">
+<body class="bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-[#D4AF37] selection:text-black">
 
-    <div class="bg-gray-900 text-gray-300 text-xs py-2 px-4 flex justify-between items-center">
-        <div><i class="fa-solid fa-bolt text-amber-400 mr-1"></i> Welcome to King Setup Multi-Market Automation</div>
-        <div class="flex items-center space-x-4">
-            <span class="cursor-pointer hover:text-white"><i class="fa-solid fa-globe mr-1"></i> Global / USD</span>
-            <span onclick="toggleAdminPanel()" class="cursor-pointer text-amber-400 hover:text-amber-300 font-bold"><i class="fa-solid fa-lock mr-1"></i> Admin Panel</span>
-        </div>
-    </div>
+    <div id="customer-view" class="min-h-screen flex flex-col justify-between transition-all duration-500">
+        
+        <header class="border-b border-neutral-800/80 bg-neutral-900/50 backdrop-blur-md sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-crown theme-gold-text text-2xl"></i>
+                <span class="text-xl font-bold tracking-wider uppercase text-white">King <span class="theme-gold-text">Setup</span></span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="text-sm font-medium text-neutral-400 hover:text-white transition">Log In</button>
+                <button class="text-sm font-medium bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-2 rounded-full transition border border-neutral-700">Sign Up</button>
+            </div>
+        </header>
 
-    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-blue-600 text-white p-2 rounded-xl shadow-md">
-                    <i class="fa-solid fa-crown text-xl"></i>
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <div id="search-hero-zone" class="text-center py-12 transition-all duration-500">
+                <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+                    Global Multi-Search Engine
+                </h1>
+                <p class="text-neutral-400 max-w-2xl mx-auto mb-8 text-sm md:text-base">
+                    Premium cross-border sourcing hub. Simultaneously query and track AliExpress Hub & Alibaba Factory.
+                </p>
+                
+                <div class="max-w-3xl mx-auto relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-[#D4AF37] to-amber-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <div class="relative flex bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden focus-within:border-[#D4AF37] transition">
+                        <div class="flex items-center pl-4 text-neutral-500">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="text" id="global-search-input" placeholder="Search global products (e.g., Drone, Smart Watch, Jackets)..." 
+                               class="w-full bg-transparent py-4 px-3 text-white placeholder-neutral-500 focus:outline-none text-base">
+                        <button onclick="executeGlobalSearch()" class="theme-gold-bg hover:bg-amber-500 text-neutral-950 font-bold px-8 transition flex items-center gap-2">
+                            <span>Search</span>
+                        </button>
+                    </div>
                 </div>
-                <span class="text-2xl font-black tracking-tight text-gray-900">KING<span class="text-blue-600">SETUP</span></span>
-            </div>
-            
-            <div class="hidden sm:flex items-center space-x-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full font-bold text-xs border border-emerald-200">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Multi-Market Router Active</span>
-            </div>
-        </div>
-    </header>
 
-    <div id="adminPanel" class="hidden max-w-4xl mx-auto mt-6 p-6 bg-slate-900 text-white rounded-2xl shadow-xl border border-slate-800">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
-            <h2 class="text-lg font-bold flex items-center gap-2 text-amber-400">
-                <i class="fa-solid fa-sliders"></i> Control Dashboard (Admin)
-            </h2>
-            <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-        </div>
-        <div class="p-4 bg-slate-800 rounded-xl border border-slate-700 space-y-2 text-sm text-gray-300">
-            <p class="text-emerald-400 font-bold">✓ Automated Status: Linked</p>
-            <p>Your Google Sheets logging engine is listening to this infrastructure. All optional tracking slots are fully active.</p>
-        </div>
+                <div class="flex justify-center items-center gap-3 mt-6">
+                    <button class="px-5 py-1.5 rounded-full text-xs font-semibold bg-[#D4AF37] text-black">All Markets</button>
+                    <button class="px-5 py-1.5 rounded-full text-xs font-semibold bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800 transition">AliExpress Hub</button>
+                    <button class="px-5 py-1.5 rounded-full text-xs font-semibold bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800 transition">Alibaba Factory</button>
+                </div>
+            </div>
+
+            <div id="default-product-grid" class="mt-8">
+                <h2 class="text-lg font-bold text-white mb-6 flex items-center gap-2 uppercase tracking-wider">
+                    <span class="w-2 h-4 theme-gold-bg block rounded-sm"></span> Premium Winning Products
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-neutral-900/60 border border-neutral-800 rounded-xl p-4 hover:border-neutral-700 transition flex flex-col justify-between">
+                        <div>
+                            <div class="aspect-square w-full bg-neutral-800 rounded-lg mb-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400');"></div>
+                            <h3 class="font-bold text-white text-base mb-1">Premium Sports Footwear</h3>
+                            <p class="text-xs text-neutral-500 mb-2">Monitored via automated global gateways</p>
+                            <p class="theme-gold-text font-bold text-lg mb-4">$49.99</p>
+                        </div>
+                        <a href="https://aliexpress.com" target="_blank" onclick="logAffiliateClick('AliExpress Hub', 'Premium Sports Footwear')" class="w-full text-center py-2.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-semibold border border-neutral-700 transition block">
+                            View Deal
+                        </a>
+                    </div>
+                    <div class="bg-neutral-900/60 border border-neutral-800 rounded-xl p-4 hover:border-neutral-700 transition flex flex-col justify-between">
+                        <div>
+                            <div class="aspect-square w-full bg-neutral-800 rounded-lg mb-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400');"></div>
+                            <h3 class="font-bold text-white text-base mb-1">Luxury Leather Backpack</h3>
+                            <p class="text-xs text-neutral-500 mb-2">Monitored via automated global gateways</p>
+                            <p class="theme-gold-text font-bold text-lg mb-4">$79.00</p>
+                        </div>
+                        <a href="https://alibaba.com" target="_blank" onclick="logAffiliateClick('Alibaba Factory', 'Luxury Leather Backpack')" class="w-full text-center py-2.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-semibold border border-neutral-700 transition block">
+                            View Deal
+                        </a>
+                    </div>
+                    <div class="bg-neutral-900/60 border border-neutral-800 rounded-xl p-4 hover:border-neutral-700 transition flex flex-col justify-between">
+                        <div>
+                            <div class="aspect-square w-full bg-neutral-800 rounded-lg mb-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400');"></div>
+                            <h3 class="font-bold text-white text-base mb-1">Wireless ANC Headphones</h3>
+                            <p class="text-xs text-neutral-500 mb-2">Monitored via automated global gateways</p>
+                            <p class="theme-gold-text font-bold text-lg mb-4">$119.50</p>
+                        </div>
+                        <a href="https://amazon.com" target="_blank" onclick="logAffiliateClick('Amazon Affiliate', 'Wireless ANC Headphones')" class="w-full text-center py-2.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-semibold border border-neutral-700 transition block">
+                            View Deal
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="full-screen-showcase" class="hidden mt-4 bg-neutral-900 border border-neutral-800 rounded-2xl p-6 md:p-8 transition-all duration-500">
+                <div class="flex justify-between items-center mb-6 border-b border-neutral-800 pb-4">
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical theme-gold-text"></i> Live Search Result Match
+                    </h2>
+                    <button onclick="closeShowcaseMode()" class="text-xs bg-neutral-800 hover:bg-neutral-700 px-3 py-1.5 rounded-lg text-neutral-400 hover:text-white transition">
+                        <i class="fa-solid fa-xmark mr-1"></i> Clear Search
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 flex flex-col md:flex-row gap-6 items-center bg-neutral-950 p-6 rounded-xl border border-neutral-800">
+                        <div class="w-full md:w-2/3">
+                            <img id="showcase-main-img" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600" alt="Showcase Product" class="w-full h-auto object-cover rounded-lg border border-neutral-800">
+                        </div>
+                        <div class="w-full md:w-1/3 flex flex-row md:flex-col gap-3 justify-center">
+                            <div class="bg-neutral-900 p-3 rounded-lg border border-neutral-800 text-center w-full">
+                                <span class="text-[10px] text-neutral-500 uppercase tracking-wider block mb-1">Target Engine</span>
+                                <p id="showcase-platform-title" class="text-sm font-bold text-white mb-2">AliExpress Hub</p>
+                                <p id="showcase-price" class="theme-gold-text font-black text-xl mb-1">$49.99</p>
+                                <p id="showcase-color" class="text-xs text-neutral-400">Color: Deep Black</p>
+                            </div>
+                            <div class="flex flex-col gap-2 w-full">
+                                <span class="text-[10px] text-neutral-500 uppercase tracking-wider text-center block">Related Colors</span>
+                                <div class="flex gap-2 justify-center">
+                                    <div class="w-8 h-8 rounded-full bg-neutral-900 border-2 border-[#D4AF37] cursor-pointer"></div>
+                                    <div class="w-8 h-8 rounded-full bg-blue-900 border border-neutral-700 cursor-pointer"></div>
+                                    <div class="w-8 h-8 rounded-full bg-red-900 border border-neutral-700 cursor-pointer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col gap-4">
+                        <span class="text-xs font-bold text-neutral-500 uppercase tracking-widest block mb-1">Available Economic Gateways</span>
+                        
+                        <div id="card-hover-aliexpress" onmouseenter="updateShowcaseDisplay('aliexpress')" class="p-4 bg-neutral-950 border border-[#D4AF37] rounded-xl flex justify-between items-center cursor-pointer transition duration-300">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-orange-600/10 rounded-lg flex items-center justify-center text-orange-500 text-lg font-bold">
+                                    <i class="fa-solid fa-a"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">AliExpress Hub</h4>
+                                    <p class="text-xs text-neutral-500">Global ID: kingsetup-20</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-neutral-600"></i>
+                        </div>
+
+                        <div id="card-hover-alibaba" onmouseenter="updateShowcaseDisplay('alibaba')" class="p-4 bg-neutral-950 border border-neutral-800 rounded-xl flex justify-between items-center cursor-pointer transition duration-300">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-yellow-600/10 rounded-lg flex items-center justify-center text-yellow-500 text-lg font-bold">
+                                    <i class="fa-solid fa-e"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Alibaba Factory</h4>
+                                    <p class="text-xs text-neutral-500">Global ID: kingsetup-20</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-neutral-600"></i>
+                        </div>
+
+                        <div id="card-hover-amazon" onmouseenter="updateShowcaseDisplay('amazon')" class="p-4 bg-neutral-950 border border-neutral-800 rounded-xl flex justify-between items-center cursor-pointer transition duration-300">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-amber-600/10 rounded-lg flex items-center justify-center text-amber-500 text-lg font-bold">
+                                    <i class="fa-brands fa-amazon"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Amazon Affiliate</h4>
+                                    <p class="text-xs text-neutral-500">Global ID: kingsetup-20</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-neutral-600"></i>
+                        </div>
+
+                        <a id="showcase-redirect-btn" href="https://aliexpress.com" target="_blank" class="w-full text-center py-3 rounded-xl theme-gold-bg hover:bg-amber-500 text-black font-bold tracking-wider transition uppercase text-sm mt-2 block">
+                            Proceed to Destination Securely
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="border-t border-neutral-900 bg-neutral-950 px-6 py-6 text-center text-xs text-neutral-600">
+            <p ondblclick="triggerAdminGateway()" class="cursor-pointer select-none hover:text-neutral-500 transition inline-block">
+                © 2026 <span class="font-bold text-neutral-500">King Setup</span>. All Architectural Rights Reserved. Secure DNA Core v4.
+            </p>
+            <p class="text-[10px] text-neutral-700 mt-1">💡 Owner Note: Double-click branding metadata text to invoke Secret Control Layer.</p>
+        </footer>
     </div>
 
-    <section class="custom-gradient text-white py-16 px-4 text-center relative overflow-hidden shadow-lg">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1600')] bg-cover bg-center opacity-10"></div>
-        <div class="relative max-w-3xl mx-auto">
-            <span class="bg-blue-500/30 text-blue-300 border border-blue-500/50 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">The Future of Affiliate Sourcing</span>
-            <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4 leading-tight">
-                Search & Compare Across <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Multiple Mega Markets</span>
-            </h1>
-            <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto mb-8">
-                Instantly scan top Asian wholesale hubs. Secure your products, compare automated commissions, and maximize margin efficiency.
-            </p>
+    <div id="admin-view" class="hidden min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between transition-all duration-500">
+        
+        <header class="border-b border-slate-800 bg-slate-900 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                <div>
+                    <h1 class="text-md font-bold text-white tracking-wide">King Setup — Admin Control Center</h1>
+                    <p class="text-[11px] text-slate-400">Database Engine: <span class="text-emerald-400">● Connected (Live Sync)</span></p>
+                </div>
+            </div>
+            <button onclick="exitAdminGateway()" class="bg-slate-800 hover:bg-red-900/40 text-slate-300 hover:text-red-400 border border-slate-700 hover:border-red-900/60 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout to Customer View
+            </button>
+        </header>
+
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
             
-            <div class="max-w-2xl mx-auto">
-                <form id="searchForm" class="flex bg-white p-2 rounded-2xl shadow-2xl border border-gray-100 text-gray-800">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Total Searches Logged</p>
+                        <p class="text-2xl font-black text-white mt-1">1,234</p>
+                    </div>
+                    <i class="fa-solid fa-chart-line text-2xl text-slate-700"></i>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Total Affiliate Clicks</p>
+                        <p class="text-2xl font-black text-white mt-1">345</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-pointer text-2xl text-slate-700"></i>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Active Platforms</p>
+                        <p class="text-2xl font-black text-white mt-1">3</p>
+                    </div>
+                    <i class="fa-solid fa-circle-nodes text-2xl text-slate-700"></i>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-3 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-amber-500"></i> API & Affiliate Platform Control (Vertical Mode)
+                </h3>
+                
+                <div class="flex flex-col gap-3">
+                    <div class="bg-slate-950 border border-slate-800/60 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 bg-orange-500/10 rounded-lg flex items-center justify-center text-orange-400 font-bold text-sm">Ali</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">AliExpress Hub Integration</h4>
+                                <p class="text-xs text-slate-500">Tracking Parameter Tag: <span class="text-slate-400 font-mono">kingsetup-20</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 self-end sm:self-auto">
+                            <span id="status-badge-aliexpress" class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 uppercase tracking-wide">Capturing On</span>
+                            <input type="checkbox" id="toggle-aliexpress" checked onchange="togglePlatformCapture('aliexpress')" class="w-9 h-5 bg-slate-800 checked:bg-amber-500 rounded-full appearance-none cursor-pointer relative before:content-[''] before:absolute before:h-4 before:w-4 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-4 before:transition-transform duration-200">
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 border border-slate-800/60 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400 font-bold text-sm">Alibaba</div>
+                  <form id="searchForm" class="flex bg-white p-2 rounded-2xl shadow-2xl border border-gray-100 text-gray-800">
                     <input type="text" id="searchInput" placeholder="Enter keyword (e.g. Wireless Earbuds, Smart Watch...)" class="w-full px-4 py-3 focus:outline-none text-base">
                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl cursor-pointer transition shadow-md">Search</button>
                 </form>
